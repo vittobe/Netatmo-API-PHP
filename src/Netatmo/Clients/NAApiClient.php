@@ -237,7 +237,7 @@ class NAApiClient
             switch ($method)
             {
                 case 'GET':
-                    $path .= '?' . http_build_query($params, NULL, '&');
+                    $path .= '?' . http_build_query($params, '', '&');
                 break;
                 // Method override as we always do a POST.
                 default:
@@ -247,7 +247,7 @@ class NAApiClient
                     }
                     else
                     {
-                        $opts[CURLOPT_POSTFIELDS] = http_build_query($params, NULL, '&');
+                        $opts[CURLOPT_POSTFIELDS] = http_build_query($params, '', '&');
                     }
                 break;
             }
@@ -723,7 +723,7 @@ class NAApiClient
           parse_str($parts['query'], $params);
           $params = array_filter($params);
           if (!empty($params)) {
-            $query = '?' . http_build_query($params, NULL, '&');
+            $query = '?' . http_build_query($params, '', '&');
           }
         }
 
@@ -776,7 +776,7 @@ class NAApiClient
                 $url = rtrim($url, '/') . '/' . ltrim($path, '/');
 
         if (!empty($params))
-            $url .= '?' . http_build_query($params, NULL, '&');
+            $url .= '?' . http_build_query($params, '', '&');
 
         return $url;
     }
